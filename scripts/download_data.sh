@@ -19,25 +19,30 @@ for corpus in train valid test; do
 done
 
 # download a different interesting data set!
+# Jane Austen's 'Pride and Prejudice', 'Emma' and 'Sense and Sensibility'
 
-mkdir -p $data/trump
+mkdir -p $data/austen
 
-mkdir -p $data/trump/raw
+mkdir -p $data/austen/raw
 
-wget https://raw.githubusercontent.com/ryanmcdermott/trump-speeches/master/speeches.txt
-mv speeches.txt $data/trump/raw
+wget https://raw.githubusercontent.com/h-schaller/pytorch-rnn-lm/master/austen_corpus.txt
+
+mv austen_corpus.txt $data/austen/raw
 
 # preprocess slightly
 
-cat $data/trump/raw/speeches.txt | python $base/scripts/preprocess_raw.py > $data/trump/raw/speeches.cleaned.txt
+cat $data/austen/raw/austen_corpus.txt | python $base/scripts/preprocess_raw.py > $data/austen/raw/austen_corpus.cleaned.txt
+
+# shuffle lines of the file in order that training, validation and testing parts are equally diverse
+
+shuf $data/austen/raw/austen_corpus.cleaned.txt -o $data/austen/raw/shuffled_lines.austen_corpus.cleaned.txt
 
 # tokenize, fix vocabulary upper bound
 
-cat $data/trump/raw/speeches.cleaned.txt | python $base/scripts/preprocess.py --vocab-size 5000 --tokenize --lang "en" > \
-    $data/trump/raw/speeches.preprocessed.txt
+cat $data/austen/raw/shuffled_lines.austen_corpus.cleaned.txt | python $base/scripts/preprocess.py --vocab-size 15000 --tokenize --lang "en" > $data/austen/raw/shuffled_lines.austen_corpus.preprocessed.txt
 
 # split into train, valid and test
 
-head -n 500 $data/trump/raw/speeches.preprocessed.txt > $data/trump/valid.txt
-head -n 1000 $data/trump/raw/speeches.preprocessed.txt | tail -n 500 > $data/trump/test.txt
-tail -n 3260 $data/trump/raw/speeches.preprocessed.txt > $data/trump/train.txt
+head -n 3000 $data/austen/raw/shuffled_lines.austen_corpus.preprocessed.txt > $data/austen/test.txt
+head -n 6000 $data/austen/raw/shuffled_lines.austen_corpus.preprocessed.txt | tail -n 3000  > $data/austen/valid.txt
+tail -n 30045 $data/austen/raw/shuffled_lines.austen_corpus.preprocessed.txt > $data/austen/train.txt
