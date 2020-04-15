@@ -21,13 +21,9 @@ done
 # download a different interesting data set!
 # Jane Austen's 'Pride and Prejudice', 'Emma' and 'Sense and Sensibility'
 
-mkdir -p $data/austen
-
 mkdir -p $data/austen/raw
 
-wget https://raw.githubusercontent.com/h-schaller/pytorch-rnn-lm/master/austen_corpus.txt
-
-mv austen_corpus.txt $data/austen/raw
+cp example_data/austen_corpus.txt $data/austen/raw/
 
 # preprocess slightly
 
