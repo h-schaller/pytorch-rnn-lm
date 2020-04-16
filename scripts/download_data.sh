@@ -35,7 +35,7 @@ shuf $data/austen/raw/austen_corpus.cleaned.txt -o $data/austen/raw/shuffled_lin
 
 # tokenize, fix vocabulary upper bound
 
-cat $data/austen/raw/shuffled_lines.austen_corpus.cleaned.txt | python $base/scripts/preprocess.py --vocab-size 15000 --tokenize --lang "en" > $data/austen/raw/shuffled_lines.austen_corpus.preprocessed.txt
+cat $data/austen/raw/shuffled_lines.austen_corpus.cleaned.txt | python $base/scripts/preprocess.py --vocab-size 10000 --tokenize --lang "en" > $data/austen/raw/shuffled_lines.austen_corpus.preprocessed.txt
 
 # split into train, valid and test
 
