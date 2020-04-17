@@ -20,6 +20,7 @@ done
 
 # download a different interesting data set!
 # Jane Austen's 'Pride and Prejudice', 'Emma' and 'Sense and Sensibility'
+# data doesn't have to be downloaded, it's already in the forked repo
 
 mkdir -p $data/austen/raw
 
@@ -29,7 +30,7 @@ cp example_data/austen_corpus.txt $data/austen/raw/
 
 cat $data/austen/raw/austen_corpus.txt | python $base/scripts/preprocess_raw.py > $data/austen/raw/austen_corpus.cleaned.txt
 
-# shuffle lines of the file in order that training, validation and testing parts are equally diverse
+# shuffle lines of the file in order that training, validation and testing parts are equally diverse, i.e. contain lines from all of the three novels
 
 shuf $data/austen/raw/austen_corpus.cleaned.txt -o $data/austen/raw/shuffled_lines.austen_corpus.cleaned.txt
 
