@@ -47,25 +47,25 @@ ___
 
 The following elements were changed in:
 
-download_data.sh
+**download_data.sh**
 - A folder 'austen' is created in the data folder.
 - A language model is created based on the three best-known novels of Jane Austen: _Pride and Prejudice_, _Sense and Sensibility_ and _Emma_. The textfile with the texts from these three novels (retrieved from Project Gutenberg) are already provided in the forked repo in the 'example_data' folder.
 - A vocabulary size of 10000 was chosen.
 - The preprocessing steps are the same except for the additional shuf command. This was added that training data, test data and validation data all have lines from all three novels.
 - Since the preprocessed file has 36045 lines, the test and validation files received each 3000 lines whereas the training file had the rest of 30045 lines. This way, the training data is approximately ten times larger than the test and validation data.
 
-train.sh
+**train.sh**
 - Data is taken from the 'austen' folder.
 - Nine models were trained with different hyperparameters (number of epochs, embedding size, dropout). These values were for the training of each model adjusted in train.sh. (And of course every model has to be saved with a different name.)
 
-generate.sh
+**generate.sh**
 - Data is taken from the 'austen' folder.
 - Number of words was increased to 300.
 - The best model was used for text generation.
 
 # How to recreate the training and text generation process
-- run scripts/download_data.sh
-- run scripts/train.sh and change the following parameters in the script to train each model*:
+- run `./scripts/download.sh`:
+- run `./scripts/train.sh` and change the following parameters in the script to train each model*:
 
 --epochs | --emsize and --nhid | --dropout | --save
 --- | --- | --- | ---
@@ -82,13 +82,13 @@ generate.sh
 \* The training of some models took slightly longer than 2 hours when something else was done on the computer in parallel.
 
 
-- run scripts/generate.sh (I already inserted the name of the model with the lowest perplexity.) The generated text will be in the 'samples' file.
+- run `./scripts/generate.sh` (I already inserted the name of the model with the lowest perplexity.) The generated text will be in the 'samples' file.
 
 # Findings from experimenting with hyperparameters
 
 The following results were achieved when training the models:
 
-_Models with 40 epochs, dropout of 0.5:_
+**_Models with 40 epochs, dropout of 0.5:_**
 
 Embedding size | Test perplexity (↓)
 --- | ---
@@ -100,7 +100,7 @@ Embedding size | Test perplexity (↓)
 
 The model on the last line with embedding size 300 and the other specified hyperparamters was the one that achieved to lowest perplexity of all trained models.
 
-_Some further models I experimented with:_
+**_Some further models I experimented with:_**
 
 Epochs | Embedding size | Dropout | Test perplexity (↓)
 --- | --- | --- | ---
