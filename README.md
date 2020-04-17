@@ -82,7 +82,7 @@ The following elements were changed in:
 \* The training of some models took slightly longer than 2 hours when something else was done on the computer in parallel.
 
 
-- run `./scripts/generate.sh` (I already inserted the name of the model with the lowest perplexity.) The generated text will be in the 'samples' file.
+- run `./scripts/generate.sh` (I already inserted the name of the model with the lowest perplexity.) The generated text will be in the 'samples' folder.
 
 # Findings from experimenting with hyperparameters
 
