@@ -66,6 +66,7 @@ generate.sh
 # How to recreate the training and text generation process
 - run scripts/download_data.sh
 - run scripts/train.sh and change the following parameters in the script to train each model*:
+
 --epochs | --emsize and --nhid | --dropout | --save
 --- | --- | --- | ---
 40 | 200 | 0.5 | $models/model1.pt
@@ -77,6 +78,7 @@ generate.sh
 50 | 225 | 0.5 | $models/model7.pt
 40 | 100 | 0.5 | $models/model8.pt
 40 | 300 | 0.5 | $models/model9.pt
+
 \* The training of some models took slightly longer than 2 hours when something else was done on the computer in parallel.
 
 
@@ -87,6 +89,7 @@ generate.sh
 The following results were achieved when training the models:
 
 _Models with 40 epochs, dropout of 0.5:_
+
 Embedding size | Test perplexity (↓)
 --- | ---
 100 | 97.48
@@ -94,9 +97,11 @@ Embedding size | Test perplexity (↓)
 200 | 85.20
 250 | 81.37
 300 | 79.78
+
 The model on the last line with embedding size 300 and the other specified hyperparamters was the one that achieved to lowest perplexity of all trained models.
 
 _Some further models I experimented with:_
+
 Epochs | Embedding size | Dropout | Test perplexity (↓)
 --- | --- | --- | ---
 40 | 200 | 0.7 | 103.55
